@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PAgina Principal</title>
+</head>
+<body>
+
+{% if canciones %}
+    {% for cancion in canciones %}
+    <li> <strong>Nombre :</strong> {{cancion.get_nombre}} </li>
+    {% endfor %}
+{% else %}
+<p>No hay nada.</p>
+{% endif %}
+
+
+
+</body>
+</html>
