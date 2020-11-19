@@ -1,7 +1,9 @@
 from django.db import models
 # Create your models here.
+
+
 class Estilo(models.Model):
-    nombre = models.CharField(primary_key=True,max_length = 30)
+    nombre = models.CharField(primary_key=True, max_length=30)
     detalles = models.TextField()
 
     def get_nombre(self):
@@ -10,9 +12,11 @@ class Estilo(models.Model):
     def get_detalles(self):
         return self.detalles
 
+
 class Artista(models.Model):
-    nombre = models.CharField(primary_key=True,max_length = 30)
+    nombre = models.CharField(primary_key=True, max_length=30)
     detalles = models.TextField()
+
     def get_nombre(self):
         return self.nombre
 
@@ -21,9 +25,9 @@ class Artista(models.Model):
 
 
 class Cancion(models.Model):
-    nombre = models.CharField(max_length = 30)
-    estilo = models.ForeignKey(Estilo)
-    artista = models.ForeignKey(Artista)
+    nombre = models.CharField(max_length=30)
+    estilo = models.ForeignKey(Estilo, on_delete=models.CASCADE)
+    artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
 
     def get_nombre(self):
         return self.nombre
