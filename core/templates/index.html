@@ -1,19 +1,116 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>PAgina Principal</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-{% if canciones %}
-    {% for cancion in canciones %}
-    <li> <strong>Nombre :</strong> {{cancion.get_nombre}} </li>
-    {% endfor %}
-{% else %}
-<p>No hay nada.</p>
-{% endif %}
+{% block contenido %}
+{% load static %}
+    <aside class="sidenav">
+      <div class="logo">
+        <a href="#"><img class="pb-50" src="{% static "img/logorgb.png" %}" alt=""></a>
+      </div>
+      <div class="menulink">
+        <a href="#"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="#"><i class="fas fa-search"></i> <span>Lorem ipsum</span> </a>
+        <a href="#"><i class="fas fa-book pb-50"></i> <span>Lorem ipsum</span></a>
+      </div>
+      <div class="buttons">
+        <a href="#"><button type="button" class="btn btn-light">Registrate</button></a>
+        <a href="#"><button type="button" class="btn btn-dark">Acceder</button></a>
+      </div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="container-flex ptb-30 plb-20">
+        <div class=" toplist">
+          <ul class="list-inline">
+            <li><a href="#">Top 100</a></li>
+            <li><a href="#">Lorem ipsum</a></li>
+            <li><a href="#">dolor sit</a></li>
+            <li><a href="#">Lorem ipsum</a></li>
+            <li><a href="#">dolor sit</a></li>
+          </ul>
+        </div>
+      </div>
+        <div class="title plb-20">
+          <h1><strong>Top 100</strong></h1>
+        </div>
+      </div>
+        <div class=" container-flex text-center">
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <p>Primavera</p>
+          </div>
+        </div>
+        <div class="container-flex">
+          <div class="title plb-20">
+            <h1><strong>Clasificación</strong></h1>
+          </div>
+        </div>
+        <div class="container-flex text-center">
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
+            <p>Top 50 - Italia</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
+            <p>Top 50 - Italia</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
+            <p>Top 50 - Italia</p>
+          </div>
+          <div class="music-card">
+            <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
+            <p>Top 50 - Italia</p>
+          </div>
+        </div>
+    </main>
 
 
-
-</body>
-</html>
+    <footer>
+      <div class="playmusic text-center">
+        <ul class="list-inline">
+          <li><a href="#"><i class="fas fa-random"></i></a></li>
+          <li><a href="#"><i class="fas fa-step-backward"></i></i></a></li>
+          <li><a href="#"><i class="far fa-play-circle"></i></a></li>
+          <li><a href="#"><i class="fas fa-step-forward"></i></a></li>
+          <li><a href="#"><i class="fas fa-redo"></i></a></li>
+        </ul>
+      </div>
+    </footer>
+{% endblock %}
