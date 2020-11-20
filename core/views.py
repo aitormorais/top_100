@@ -10,13 +10,14 @@ def index(request):
     return render(request, "index.html", context={'canciones': canciones})
 
 
-def genero(request, nombre_genero=1):
+def genero(request, nombre_genero=None):
     estilos = Estilo.objects.all()
+    print(nombre_genero)
     queryValida = False
     nameInput = False
     genero_seleccionado = None
     canciones_con_genero = None
-    if(nombre_genero == None):
+    if(nombre_genero != None):
         nameInput = True
         try:
             genero_seleccionado = get_object_or_404(
