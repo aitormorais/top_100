@@ -5,6 +5,10 @@
   font-family: arial, sans-serif;
 }
 
+body {
+  background-color: #182f34;
+}
+
 a {
   color: inherit;
 }
