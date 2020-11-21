@@ -43,10 +43,13 @@
           </tr>
           {% for c in canciones %}
           <tr>
-            <td><a href="#"><i class="far fa-play-circle"></i></a></td> <!-- Utilizar js para hacer play a la canción seleccionada -->
+            <td><a id="{{c.nombre}}" onclick="player(this.id)" href="javascript:void(0)"><i id="{{c.nombre}}Icon" class="far fa-play-circle"></i></a></td> <!-- Utilizar js para hacer play a la canción seleccionada -->
+            <audio id="{{c.nombre}}audioPlayer" preload="none">
+              <source src="{{c.uri}}" type="audio/mpeg">
+            </audio>
             <td>{{c.nombre}}</td>
-            <td>{{c.estilo}}</td>
-            <td>{{c.artista}}</td>
+            <td>{{c.estilo.nombre}}</td>
+            <td>{{c.artista.nombre}}</td>
           </tr>
           {% endfor %}
         </table>
@@ -69,11 +72,11 @@
   <footer>
     <div class="playmusic text-center">
       <ul class="list-inline">
-        <li><a href="#"><i class="fas fa-random"></i></a></li>
-        <li><a href="#"><i class="fas fa-step-backward"></i></i></a></li>
-        <li><a href="#"><i class="far fa-play-circle"></i></a></li>
-        <li><a href="#"><i class="fas fa-step-forward"></i></a></li>
-        <li><a href="#"><i class="fas fa-redo"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-random"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-step-backward"></i></i></a></li>
+        <li><a href="javascript:void(0)"><i id="genericPlayer" class="far fa-play-circle"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-step-forward"></i></a></li>
+        <li><a href="javascript:void(0)"><i class="fas fa-redo"></i></a></li>
       </ul>
     </div>
   </footer>

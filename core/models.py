@@ -28,6 +28,7 @@ class Cancion(models.Model):
     nombre = models.CharField(max_length=30)
     estilo = models.ForeignKey(Estilo, on_delete=models.CASCADE)
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
+    uri = models.CharField(max_length=30)
 
     def get_nombre(self):
         return self.nombre
