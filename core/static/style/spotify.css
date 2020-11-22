@@ -193,3 +193,7 @@ footer i {
     font-size: 10px;
   }
 }
+/* Progress bar */
+footer .progress {
+  margin-bottom: 0px;
+}

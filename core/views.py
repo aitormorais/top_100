@@ -12,7 +12,6 @@ def index(request):
 
 def genero(request, nombre_genero=None):
     estilos = Estilo.objects.all()
-    print(nombre_genero)
     queryValida = False
     nameInput = False
     genero_seleccionado = None

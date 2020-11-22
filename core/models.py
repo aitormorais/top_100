@@ -5,6 +5,7 @@ from django.db import models
 class Estilo(models.Model):
     nombre = models.CharField(primary_key=True, max_length=30)
     detalles = models.TextField()
+    caratula = models.ImageField(upload_to='gallery')
 
     def get_nombre(self):
         return self.nombre
@@ -28,7 +29,7 @@ class Cancion(models.Model):
     nombre = models.CharField(max_length=30)
     estilo = models.ForeignKey(Estilo, on_delete=models.CASCADE)
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
-    uri = models.CharField(max_length=30)
+    mp3 = models.FileField(upload_to='songs')
 
     def get_nombre(self):
         return self.nombre

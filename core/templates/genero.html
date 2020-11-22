@@ -2,21 +2,7 @@
 
 {% block contenido %}
 {% load static %}
-<aside class="sidenav">
-    <div class="logo">
-      <a href="/"><img class="pb-50" src="{% static "img/logorgb.png" %}" alt=""></a>
-    </div>
-    <div class="menulink">
-      <a href="#"><i class="fas fa-home"></i><span>Home</span></a>
-      <a href="#"><i class="fas fa-search"></i> <span>Lorem ipsum</span> </a>
-      <a href="#"><i class="fas fa-book pb-50"></i> <span>Lorem ipsum</span></a>
-    </div>
-    <div class="buttons">
-      <a href="#"><button type="button" class="btn btn-light">Registrate</button></a>
-      <a href="#"><button type="button" class="btn btn-dark">Acceder</button></a>
-    </div>
-    </div>
-  </aside>
+
 
   <main>
     <div class="container-flex ptb-30 plb-20">
@@ -43,9 +29,9 @@
           </tr>
           {% for c in canciones %}
           <tr>
-            <td><a id="{{c.nombre}}" onclick="player(this.id)" href="javascript:void(0)"><i id="{{c.nombre}}Icon" class="far fa-play-circle"></i></a></td> <!-- Utilizar js para hacer play a la canción seleccionada -->
+            <td><a id="{{c.nombre}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i id="{{c.nombre}}Icon" class="far fa-play-circle"></i></a></td> <!-- Utilizar js para hacer play a la canción seleccionada -->
             <audio id="{{c.nombre}}audioPlayer" preload="none">
-              <source src="{{c.uri}}" type="audio/mpeg">
+              <source src="{{c.mp3.url}}" type="audio/mpeg">
             </audio>
             <td>{{c.nombre}}</td>
             <td>{{c.estilo.nombre}}</td>
@@ -59,7 +45,7 @@
         {% for e in estilos %}
         <div class=" container-flex text-center">
             <div class="music-card">
-            <a href="/genero/{{e.nombre}}"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
+            <a href="/genero/{{e.nombre}}"><img src="{{e.caratula.url}}" alt=""></a>
             <p><a href="/genero/{{e.nombre}}">{{e.nombre}}</a></p>
             </div>
         </div>
@@ -69,15 +55,5 @@
   </main>
 
 
-  <footer>
-    <div class="playmusic text-center">
-      <ul class="list-inline">
-        <li><a href="javascript:void(0)"><i class="fas fa-random"></i></a></li>
-        <li><a href="javascript:void(0)"><i class="fas fa-step-backward"></i></i></a></li>
-        <li><a href="javascript:void(0)"><i id="genericPlayer" class="far fa-play-circle"></i></a></li>
-        <li><a href="javascript:void(0)"><i class="fas fa-step-forward"></i></a></li>
-        <li><a href="javascript:void(0)"><i class="fas fa-redo"></i></a></li>
-      </ul>
-    </div>
-  </footer>
+  
 {% endblock %}
