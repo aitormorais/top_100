@@ -197,3 +197,6 @@ footer i {
 footer .progress {
   margin-bottom: 0px;
 }
+footer .progress-bar {
+  background-color: #85d27e;
+}
