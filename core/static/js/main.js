@@ -81,6 +81,11 @@ function updateProgressValue() {
     }
 };
 setInterval(updateProgressValue, 200); // Update the progress of the bar
-$(document).ready(function() {
-    totalTable = $('.table tr td a');
+$(window).on("load",function(){
+    $(".loader-wrapper").fadeOut("slow");
+    try {
+        totalTable = $('.table tr td a');
+    } catch (error) {
+        console.log("Aqui no hay canciones");
+    }
 });
