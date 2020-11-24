@@ -158,8 +158,14 @@ footer {
   color: grey;
 }
 footer i {
-  padding: 20px 20px 0 0;
+  margin-top: 20px;
   font-size: 18px;
+}
+footer .onRepeat {
+  color: #5fff50;
+}
+footer .onRandom {
+  color: #5fff50;
 }
 
 /* RESPONSIVE MEDIA  */
@@ -196,9 +202,10 @@ footer i {
 /* Progress bar */
 footer .progress {
   margin-bottom: 0px;
+  background-color: #282828;
 }
 footer .progress-bar {
-  background-color: #85d27e;
+  background-color: #5fff50;
 }
 /* Loader */
 body {
