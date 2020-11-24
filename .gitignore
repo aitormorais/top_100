@@ -3,3 +3,4 @@
 
 # Py cache files
 */__pycache__
+core/migrations/__pycache__
