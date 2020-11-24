@@ -3,6 +3,7 @@ var idPlayer = null;
 var iconList = null;
 var iconGeneric = null;
 var totalTable = null;
+var totalTable_full = null;
 var currentSongIndex = null;
 var repeatSame = null;
 var randomSong = null;
@@ -13,6 +14,8 @@ function PlayPause(id) {
         for (let i = 0; i < totalTable.length; i++) {
             if (totalTable[i].id == idPlayer) {
                 currentSongIndex = i;
+                songVue.songString = totalTable[i].parentNode.parentNode.childNodes[5].childNodes[0].textContent; // Just works
+                break;
             }
         }
         song = document.getElementById(id + "audioPlayer"); // Store data
@@ -127,7 +130,17 @@ $(window).on("load", function () {
     $(".loader-wrapper").fadeOut("slow");
     try {
         totalTable = $('.table tr td a');
+        totalTable_full = $(".table tr td");
     } catch (error) {
         console.log("Aqui no hay canciones");
     }
 });
+
+var songVue = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#NowPlaying',
+    data: {
+        message: 'Now Playing: ',
+        songString: ''
+    }
+})

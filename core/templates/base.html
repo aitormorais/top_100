@@ -30,7 +30,7 @@
     <div class="menulink">
       <a href="#"><i class="fas fa-home"></i><span>Home</span></a>
       <a href="#"><i class="fas fa-search"></i> <span>Lorem ipsum</span> </a>
-      <a href="#"><i class="fas fa-book pb-50"></i> <span>Lorem ipsum</span></a>
+      <a href="#"><i class="fas fa-book"></i> <span>Lorem ipsum</span></a>
     </div>
     <div class="buttons">
       <a href="#"><button type="button" class="btn btn-light">Registrate</button></a>
@@ -44,16 +44,25 @@
       <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
         aria-valuemax="100"></div>
     </div>
-    <div class="playmusic text-center">
-      <ul class="list-inline">
-        <li><a href="javascript:void(0)" onclick="random()"><i id="random" class="fas fa-random"></i></a></li>
-        <li><a href="javascript:void(0)" onclick="nextSong(-1)"><i class="fas fa-step-backward"></i></i></a></li>
-        <li><a href="javascript:void(0)" onclick="genericPlayPause()"><i id="genericPlayer"
-              class="far fa-play-circle"></i></a></li>
-        <li><a href="javascript:void(0)" onclick="nextSong(1)"><i class="fas fa-step-forward"></i></a></li>
-        <li><a href="javascript:void(0)" onclick="repeat()"><i id="repeat" class="fas fa-sync"></i></a></li>
-      </ul>
+    <div class="footer-container">
+      <div id="NowPlaying" class="left text-center">
+        {% autoescape off %}
+        <h3 v-cloak>[[ message ]][[ songString ]]</h3>
+        {% endautoescape %}
+      </div>
+      <div class="playmusic text-center center">
+        <ul class="list-inline">
+          <li><a href="javascript:void(0)" onclick="random()"><i id="random" class="fas fa-random"></i></a></li>
+          <li><a href="javascript:void(0)" onclick="nextSong(-1)"><i class="fas fa-step-backward"></i></i></a></li>
+          <li><a href="javascript:void(0)" onclick="genericPlayPause()"><i id="genericPlayer"
+                class="far fa-play-circle"></i></a></li>
+          <li><a href="javascript:void(0)" onclick="nextSong(1)"><i class="fas fa-step-forward"></i></a></li>
+          <li><a href="javascript:void(0)" onclick="repeat()"><i id="repeat" class="fas fa-sync"></i></a></li>
+        </ul>
+      </div>
+      <div class="right"></div>
     </div>
+
   </footer>
 
   <!-- jQuery library -->

@@ -4,56 +4,57 @@
 {% load static %}
 
 
-  <main>
-    <div class="container-flex ptb-30 plb-20">
-      <div class="toplist">
-        <ul class="list-inline">
-          <li><a href="/">Top 100</a></li>
-          <li><a href="/genero" id="selected">Genero</a></li>
-          <li><a href="#">dolor sit</a></li>
-          <li><a href="#">Lorem ipsum</a></li>
-          <li><a href="#">dolor sit</a></li>
-        </ul>
-      </div>
+<main>
+  <div class="container-flex ptb-30 plb-20">
+    <div class="toplist">
+      <ul class="list-inline">
+        <li><a href="/">Top 100</a></li>
+        <li><a href="/genero" id="selected">Genero</a></li>
+        <li><a href="#">dolor sit</a></li>
+        <li><a href="#">Lorem ipsum</a></li>
+        <li><a href="#">dolor sit</a></li>
+      </ul>
     </div>
-      <div class="title plb-20">
-        <h1><strong>Top 100</strong></h1>
-      </div>
-      {% if query %}
-        <table class="table table-dark">
-          <tr>
-            <th></th>
-            <th>Nombre</th>
-            <th>Estilo</th>
-            <th>Artista</th>
-          </tr>
-          {% for c in canciones %}
-          <tr>
-            <td><a id="{{c.nombre}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i id="{{c.nombre}}Icon" class="far fa-play-circle"></i></a></td> <!-- Utilizar js para hacer play a la canción seleccionada -->
-            <audio id="{{c.nombre}}audioPlayer" preload="none">
-              <source src="{{c.mp3.url}}" type="audio/mpeg">
-            </audio>
-            <td>{{c.nombre}}</td>
-            <td>{{c.estilo.nombre}}</td>
-            <td>{{c.artista.nombre}}</td>
-          </tr>
-          {% endfor %}
-        </table>
-      {% elif nombre %}
-        <h1>:( No hay ninguna cancion con ese genero</h1>
-      {% else %}
-        {% for e in estilos %}
-        <div class=" container-flex text-center">
-            <div class="music-card">
-            <a href="/genero/{{e.nombre}}"><img src="{{e.caratula.url}}" alt=""></a>
-            <p><a href="/genero/{{e.nombre}}">{{e.nombre}}</a></p>
-            </div>
-        </div>
-        {% endfor %}
-      {% endif %}
+  </div>
+  <div class="title plb-20">
+    <h1><strong>Top 100</strong></h1>
+  </div>
+  {% if query %}
+  <table class="table table-dark">
+    <tr>
+      <th></th>
+      <th>Nombre</th>
+      <th>Estilo</th>
+      <th>Artista</th>
+    </tr>
+    {% for c in canciones %}
+    <tr>
+      <td><a id="{{c.nombre}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i id="{{c.nombre}}Icon"
+            class="far fa-play-circle"></i></a></td> <!-- Utilizar js para hacer play a la canción seleccionada -->
+      <audio id="{{c.nombre}}audioPlayer" preload="none">
+        <source src="{{c.mp3.url}}" type="audio/mpeg">
+      </audio>
+      <td>{{c.nombre}}</td>
+      <td>{{c.estilo.nombre}}</td>
+      <td>{{c.artista.nombre}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% elif nombre %}
+  <h1>:( No hay ninguna cancion con ese genero</h1>
+  {% else %}
+  {% for e in estilos %}
+  <div class=" container-flex text-center">
+    <div class="music-card">
+      <a href="/genero/{{e.nombre}}"><img src="{{e.caratula.url}}" alt=""></a>
+      <p><a href="/genero/{{e.nombre}}">{{e.nombre}}</a></p>
     </div>
-  </main>
+  </div>
+  {% endfor %}
+  {% endif %}
+  </div>
+</main>
 
 
-  
+
 {% endblock %}
