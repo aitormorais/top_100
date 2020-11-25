@@ -32,6 +32,7 @@ class Cancion(models.Model):
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
     mp3 = models.FileField(upload_to='songs')
     caratula = models.ImageField(upload_to='gallery')
+    vecesEscuchada = models.IntegerField(default=1)
 
     def get_nombre(self):
         return self.nombre

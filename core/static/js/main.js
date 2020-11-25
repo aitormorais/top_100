@@ -7,6 +7,7 @@ var totalTable_full = null;
 var currentSongIndex = null;
 var repeatSame = null;
 var randomSong = null;
+var token = null;
 
 function PlayPause(id) {
     if (song == null || idPlayer == id) { // If song is null is a new song. If the id is the same just pause
@@ -20,6 +21,17 @@ function PlayPause(id) {
         songVue.songString = document.getElementById(id + "NameLabel").textContent;
         $("#caratula").show();
         $("#caratula").prop('src', $("#" + id).attr("url"))
+        $.ajax({
+            type: "POST",
+            url: "/api/cancionEscuchada",
+            headers: { 'X-CSRFToken': token },
+            data: { cancion: songVue.songString },
+            dataType: "json",
+            success: function (response) {
+                console.log("!!");
+                console.log(response);
+            }
+        });
         song = document.getElementById(id + "audioPlayer"); // Store data
         iconList = document.getElementById(id + "Icon");
         iconGeneric = document.getElementById("genericPlayer");
@@ -131,6 +143,17 @@ setInterval(updateProgressValue, 100); // Update the progress of the bar
 $(window).on("load", function () {
     $(".loader-wrapper").fadeOut("slow");
     $("#caratula").hide();
+    $.ajax({
+        type: "POST",
+        url: "/api/cancionEscuchada",
+        headers: { 'X-CSRFToken': token },
+        data: { datos: 'illo' },
+        dataType: "json",
+        success: function (response) {
+            console.log("!!");
+            console.log(response);
+        }
+    });
     try {
         totalTable = $('.table tr td a');
         totalTable_full = $(".table tr td");

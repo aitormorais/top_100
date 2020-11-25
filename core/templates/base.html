@@ -17,6 +17,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static "style/spotify.css" %}">
   {% block titulo %}{% endblock %}
+  {% csrf_token %}
 </head>
 
 <body class="body">
@@ -80,6 +81,9 @@
 
   <!-- Main Javascript File -->
   <script src="{% static "js/main.js" %} "></script>
+  <script>
+    token = '{{csrf_token}}';
+  </script>
 </body>
 
 </html>

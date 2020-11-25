@@ -1,4 +1,5 @@
 from django.db.models import query
+from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 # Create your views here.
@@ -40,6 +41,7 @@ def genero(request, nombre_genero=None):
     }
     return render(request, "genero.html", context)
 
+
 def artista(request, nombre_artista=None):
     artista = Artista.objects.all()
     nombre_artista = None
@@ -72,3 +74,9 @@ def artista(request, nombre_artista=None):
     }
     return render(request, "artista.html", context)
 
+
+def cancionEscuchada(request):
+    if request.method == "POST":
+        print(request.body)
+        return HttpResponse("Post OK")
+    return HttpResponse(":(")
