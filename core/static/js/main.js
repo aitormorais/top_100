@@ -8,6 +8,7 @@ var currentSongIndex = null;
 var repeatSame = null;
 var randomSong = null;
 var token = null;
+var firstTime = true;
 
 function PlayPause(id) {
     if (song == null || idPlayer == id) { // If song is null is a new song. If the id is the same just pause
@@ -21,17 +22,8 @@ function PlayPause(id) {
         songVue.songString = document.getElementById(id + "NameLabel").textContent;
         $("#caratula").show();
         $("#caratula").prop('src', $("#" + id).attr("url"))
-        $.ajax({
-            type: "POST",
-            url: "/api/cancionEscuchada",
-            headers: { 'X-CSRFToken': token },
-            data: { cancion: songVue.songString },
-            dataType: "json",
-            success: function (response) {
-                console.log("!!");
-                console.log(response);
-            }
-        });
+        var mydata = { cancion: songVue.songString };
+
         song = document.getElementById(id + "audioPlayer"); // Store data
         iconList = document.getElementById(id + "Icon");
         iconGeneric = document.getElementById("genericPlayer");
@@ -39,13 +31,30 @@ function PlayPause(id) {
             if (iconList.className == "far fa-play-circle") {
                 iconList.className = "far fa-pause-circle";
                 iconGeneric.className = "far fa-pause-circle";
-                if (song.paused) {
-                    song.play();
-                } else {
-                    song.load();
-                    song.play();
-                    song.volume = 0.2;
+                if (firstTime) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/cancionEscuchada",
+                        headers: { 'X-CSRFToken': token },
+                        data: JSON.stringify(mydata),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: "json"
+                    })
+                        .done(function (data, textStatus, jqXHR) {
+                            if (console && console.log) {
+                                console.log("La solicitud se ha completado correctamente.");
+                                console.log(data);
+                            }
+                        })
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                            if (console && console.log) {
+                                console.log("La solicitud a fallado: " + textStatus);
+                            }
+                        });
                 }
+                firstTime = false
+                song.play();
+                song.volume = 0.2;
             } else if (iconList.className == "far fa-pause-circle") {
                 iconList.className = "far fa-play-circle";
                 iconGeneric.className = "far fa-play-circle";
@@ -62,6 +71,7 @@ function PlayPause(id) {
         iconGeneric.className = "far fa-play-circle";       //
         song = document.getElementById(id + "audioPlayer"); // Update the song player
         idPlayer = id;                                      // Update the id of the player
+        firstTime = true                                    // POST the server about a new song being played
         PlayPause(id);                                      // Restart the func
     }
 }
@@ -143,17 +153,6 @@ setInterval(updateProgressValue, 100); // Update the progress of the bar
 $(window).on("load", function () {
     $(".loader-wrapper").fadeOut("slow");
     $("#caratula").hide();
-    $.ajax({
-        type: "POST",
-        url: "/api/cancionEscuchada",
-        headers: { 'X-CSRFToken': token },
-        data: { datos: 'illo' },
-        dataType: "json",
-        success: function (response) {
-            console.log("!!");
-            console.log(response);
-        }
-    });
     try {
         totalTable = $('.table tr td a');
         totalTable_full = $(".table tr td");

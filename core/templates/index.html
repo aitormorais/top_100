@@ -15,73 +15,31 @@
     </div>
   </div>
   <div class="title plb-20">
-    <h1><strong>Top 100</strong></h1>
+    <h1><strong>Top 100 de canciones</strong></h1>
   </div>
   </div>
   <div class=" container-flex text-center">
+    {% for c in canciones %}
     <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
+      <a href=""><img src="{{c.caratula.url}}" alt=""></a>
+      <p>{{c.nombre}}</p>
     </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/primavera.jpg" %}" alt=""></a>
-      <p>Primavera</p>
-    </div>
+    {% endfor %}
   </div>
   <div class="container-flex">
     <div class="title plb-20">
-      <h1><strong>Clasificación</strong></h1>
+      <h1><strong>Generos</strong></h1>
     </div>
   </div>
   <div class="container-flex text-center">
+    {% for g in generos %}
     <div class="music-card">
-      <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
-      <p>Top 50 - Italia</p>
+      <a href="/genero/{{g.nombre}}"><img src="{{g.caratula.url}}" alt=""></a>
+      <a href="/genero/{{g.nombre}}">
+        <p>{{g.nombre}}</p>
+      </a>
     </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
-      <p>Top 50 - Italia</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
-      <p>Top 50 - Italia</p>
-    </div>
-    <div class="music-card">
-      <a href="#"><img src="{% static "img/top50.jpg" %}" alt=""></a>
-      <p>Top 50 - Italia</p>
-    </div>
+    {% endfor %}
   </div>
 </main>
 {% endblock %}

@@ -1,5 +1,6 @@
+import json
 from django.db.models import query
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 # Create your views here.
@@ -7,8 +8,13 @@ from core.models import Cancion, Estilo, Artista
 
 
 def index(request):
-    canciones = Cancion.objects.all()
-    return render(request, "index.html", context={'canciones': canciones})
+    canciones = Cancion.objects.order_by('-vecesEscuchada')
+    generos = Estilo.objects.all()
+    data = {
+        'canciones': canciones,
+        'generos': generos
+    }
+    return render(request, "index.html", data)
 
 
 def genero(request, nombre_genero=None):
@@ -77,6 +83,26 @@ def artista(request, nombre_artista=None):
 
 def cancionEscuchada(request):
     if request.method == "POST":
-        print(request.body)
-        return HttpResponse("Post OK")
+        try:
+            body_unicode = request.body.decode('utf-8')
+            body = json.loads(body_unicode)
+            content = body['cancion']
+            cancion = get_object_or_404(Cancion, nombre=content)
+            cancion.vecesEscuchada += 1
+            data = {
+                'status': 200,
+                'data': 'OK',
+                'Veces escuchada': cancion.vecesEscuchada
+            }
+            cancion.save()
+            dump = json.dumps(data)
+            return HttpResponse(dump, content_type='application/json')
+        except Exception as e:
+            data = {
+                'status': 500,
+                'data': e.__str__
+            }
+            dump = json.dumps(data)
+            return HttpResponse(dump, content_type='application/json')
+
     return HttpResponse(":(")
