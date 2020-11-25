@@ -2,7 +2,7 @@ from django.db.models import query
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 # Create your views here.
-from core.models import Cancion, Estilo
+from core.models import Cancion, Estilo, Artista
 
 
 def index(request):
@@ -39,3 +39,11 @@ def genero(request, nombre_genero=None):
         "canciones": canciones_con_genero
     }
     return render(request, "genero.html", context)
+
+def artista(request, nombre_artista=None):
+    artista = Artista.objects.all()
+    context = {
+        "artist": artista
+    }
+    return render(request, "artista.html", context)
+
