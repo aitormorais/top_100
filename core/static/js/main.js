@@ -14,10 +14,10 @@ function PlayPause(id) {
         for (let i = 0; i < totalTable.length; i++) {
             if (totalTable[i].id == idPlayer) {
                 currentSongIndex = i;
-                songVue.songString = totalTable[i].parentNode.parentNode.childNodes[5].childNodes[0].textContent; // Just works
                 break;
             }
         }
+        songVue.songString = document.getElementById(id + "NameLabel").textContent;
         song = document.getElementById(id + "audioPlayer"); // Store data
         iconList = document.getElementById(id + "Icon");
         iconGeneric = document.getElementById("genericPlayer");
