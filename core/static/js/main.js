@@ -18,6 +18,8 @@ function PlayPause(id) {
             }
         }
         songVue.songString = document.getElementById(id + "NameLabel").textContent;
+        $("#caratula").show();
+        $("#caratula").prop('src', $("#" + id).attr("url"))
         song = document.getElementById(id + "audioPlayer"); // Store data
         iconList = document.getElementById(id + "Icon");
         iconGeneric = document.getElementById("genericPlayer");
@@ -128,6 +130,7 @@ setInterval(updateProgressValue, 100); // Update the progress of the bar
 
 $(window).on("load", function () {
     $(".loader-wrapper").fadeOut("slow");
+    $("#caratula").hide();
     try {
         totalTable = $('.table tr td a');
         totalTable_full = $(".table tr td");

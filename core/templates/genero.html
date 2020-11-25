@@ -29,8 +29,9 @@
     </tr>
     {% for c in canciones %}
     <tr>
-      <td><a id="{{c.nombre}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i id="{{c.nombre}}Icon"
-            class="far fa-play-circle"></i></a></td> <!-- Utilizar js para hacer play a la canción seleccionada -->
+      <td><a id="{{c.nombre}}" url="{{c.caratula.url}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i
+            id="{{c.nombre}}Icon" class="far fa-play-circle"></i></a></td>
+      <!-- Utilizar js para hacer play a la canción seleccionada -->
       <audio id="{{c.nombre}}audioPlayer" preload="none">
         <source src="{{c.mp3.url}}" type="audio/mpeg">
       </audio>
@@ -44,12 +45,12 @@
   <h1>:( No hay ninguna cancion con ese genero</h1>
   {% else %}
   <div class=" container-flex text-center">
-  {% for e in estilos %}
+    {% for e in estilos %}
     <div class="music-card">
       <a href="/genero/{{e.nombre}}"><img src="{{e.caratula.url}}" alt=""></a>
       <p><a href="/genero/{{e.nombre}}">{{e.nombre}}</a></p>
     </div>
-  {% endfor %}
+    {% endfor %}
   </div>
   {% endif %}
   </div>

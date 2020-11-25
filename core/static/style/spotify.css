@@ -176,8 +176,15 @@ footer .footer-container {
 }
 footer .footer-container .left {
   float: left;
+  display: flex;
+  justify-content: center;
   width: 33.3%;
   height: 100%;
+}
+footer .footer-container .left img {
+  float: left;
+  width: 10%;
+  /* margin-left: 40%; */
 }
 footer .footer-container .left h3 {
   margin-top: 2.7%;
