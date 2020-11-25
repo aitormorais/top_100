@@ -9,6 +9,9 @@ var repeatSame = null;
 var randomSong = null;
 var token = null;
 var firstTime = true;
+var ref = null;
+var popup = null;
+var visible = null;
 
 function PlayPause(id) {
     if (song == null || idPlayer == id) { // If song is null is a new song. If the id is the same just pause
@@ -153,6 +156,25 @@ setInterval(updateProgressValue, 100); // Update the progress of the bar
 $(window).on("load", function () {
     $(".loader-wrapper").fadeOut("slow");
     $("#caratula").hide();
+    ref = $('#lupa');
+    popup = $('#popup');
+    popup.hide();
+    ref.click(function () {
+        if (!visible) {
+            visible = true;
+            $('#casa').removeClass("selected");
+            $('#lupa-i').addClass("selected");
+            popup.show();
+            var popper = new Popper(ref, popup, {
+                placement: 'right',
+            });
+        } else {
+            $('#lupa-i').removeClass("selected");
+            $('#casa').addClass("selected");
+            popup.hide();
+            visible = false;
+        }
+    });
     try {
         totalTable = $('.table tr td a');
         totalTable_full = $(".table tr td");
@@ -160,12 +182,18 @@ $(window).on("load", function () {
         console.log("Aqui no hay canciones");
     }
 });
-
 var songVue = new Vue({
     delimiters: ['[[', ']]'],
     el: '#NowPlaying',
     data: {
         message: 'Now Playing: ',
         songString: ''
+    }
+})
+var searchVue = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#popup',
+    data: {
+        message: ''
     }
 })

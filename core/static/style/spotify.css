@@ -20,6 +20,25 @@ a:hover {
   /* Ocultar las variables de Vue hasta la carga */
   display: none;
 }
+.PopUp {
+  width: 30%;
+  height: 60px;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #bdbdbd;
+  color: rgb(0, 0, 0);
+}
+.PopUp .form-control {
+  width: 69%;
+  float: left;
+}
+.PopUp .btn {
+  float: right;
+  width: 30%;
+}
 /* SHARED */
 
 .ptb-30 {
@@ -61,10 +80,12 @@ a:hover {
   color: #818181;
   display: block;
 }
-.menulink a:first-child {
-  color: white;
+.menulink a .selected {
   padding-left: 10px;
   border-left: 2px solid green;
+}
+.menulink a .selectedText {
+  color: white;
 }
 .menulink i {
   padding-right: 20px;

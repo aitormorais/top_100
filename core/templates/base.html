@@ -29,9 +29,10 @@
       <a href="/"><img class="pb-50" src="{% static "img/logorgb.png" %}" alt=""></a>
     </div>
     <div class="menulink">
-      <a href="#"><i class="fas fa-home"></i><span>Home</span></a>
-      <a href="#"><i class="fas fa-search"></i> <span>Lorem ipsum</span> </a>
-      <a href="#"><i class="fas fa-book"></i> <span>Lorem ipsum</span></a>
+      <a href="#"><i id="casa" class="fas fa-home selected"></i><span>Home</span></a>
+      <a href="#" id="lupa"><i id="lupa-i" class="fas fa-search"></i><span class="selectedText">Search
+          Songs</span></a>
+      <a href="#"><i class="fas fa-book"></i><span>Lorem ipsum</span></a>
     </div>
     <div class="buttons">
       <a href="#"><button type="button" class="btn btn-light">Registrate</button></a>
@@ -39,6 +40,12 @@
     </div>
     </div>
   </aside>
+  <div id="popup" class="PopUp">
+    <form v-bind:action=" '/search/' + message ">
+      <input class="form-control mr-sm-2" v-model="message" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
   {% block contenido %}{% endblock %}
   <footer>
     <div class="progress" style="height: 3px;">

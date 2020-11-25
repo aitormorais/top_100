@@ -106,3 +106,20 @@ def cancionEscuchada(request):
             return HttpResponse(dump, content_type='application/json')
 
     return HttpResponse(":(")
+
+
+def busqueda(request, nombre_cancion):
+    query = False
+    canciones = None
+    try:
+        #canciones = Cancion.objects.get(nombre__icontains=nombre_cancion).order_by('-vecesEscuchada')
+        canciones = get_list_or_404(Cancion, nombre__icontains=nombre_cancion)
+        query = True
+    except Exception as e:
+        print(e)
+    data = {
+        'query': query,
+        'busqueda': nombre_cancion,
+        'canciones': canciones
+    }
+    return render(request, "search.html", data)
