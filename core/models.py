@@ -17,6 +17,7 @@ class Estilo(models.Model):
 class Artista(models.Model):
     nombre = models.CharField(primary_key=True, max_length=30)
     detalles = models.TextField()
+    imagen = models.ImageField(upload_to='gallery')
 
     def get_nombre(self):
         return self.nombre

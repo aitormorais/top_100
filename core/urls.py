@@ -9,4 +9,5 @@ urlpatterns = [
     path('genero/', views.genero, name='genero'),
     path('genero/<str:nombre_genero>/', views.genero, name='genero'),
     path('artista/', views.artista, name='artista'),
+    path('artista/<str:nombre_artista>/', views.artista, name='artista'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,7 +10,7 @@
       <ul class="list-inline">
         <li><a href="/">Top 100</a></li>
         <li><a href="/genero" id="selected">Genero</a></li>
-        <li><a href="/genero/artista">Artistas</a></li>
+        <li><a href="/artista">Artistas</a></li>
         <li><a href="#">Lorem ipsum</a></li>
         <li><a href="#">dolor sit</a></li>
       </ul>
@@ -43,14 +43,14 @@
   {% elif nombre %}
   <h1>:( No hay ninguna cancion con ese genero</h1>
   {% else %}
-  {% for e in estilos %}
   <div class=" container-flex text-center">
+  {% for e in estilos %}
     <div class="music-card">
       <a href="/genero/{{e.nombre}}"><img src="{{e.caratula.url}}" alt=""></a>
       <p><a href="/genero/{{e.nombre}}">{{e.nombre}}</a></p>
     </div>
-  </div>
   {% endfor %}
+  </div>
   {% endif %}
   </div>
 </main>
