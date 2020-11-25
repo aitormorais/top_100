@@ -42,8 +42,33 @@ def genero(request, nombre_genero=None):
 
 def artista(request, nombre_artista=None):
     artista = Artista.objects.all()
+    nombre_artista = None
+    artista_seleccionado = None
+    queryValida = False
+    nameInput = False
+    canciones_de_artista = None
+
+    if(nombre_artista != None):
+        nameInput = True
+        try:
+            artista_seleccionado = get_object_or_404(
+                Artista, nombre=nombre_artista)
+            try:
+                canciones_de_artista = get_list_or_404(
+                    Cancion, artista=artista_seleccionado)
+                queryValida = True
+            except Exception:
+                pass
+            pass
+        except Exception:
+            pass
+
     context = {
-        "artist": artista
+        "artist": artista,
+        "nombre": nameInput,
+        "query": queryValida,
+        "artista": artista_seleccionado,
+        "canciones_artista": canciones_de_artista
     }
     return render(request, "artista.html", context)
 
