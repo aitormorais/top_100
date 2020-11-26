@@ -28,8 +28,7 @@ a:hover {
   padding-bottom: 10px;
   padding-right: 20px;
   padding-left: 20px;
-  background-color: #bdbdbd;
-  color: rgb(0, 0, 0);
+  background-color: rgb(40 40 40 / 95%);
 }
 .PopUp .form-control {
   width: 69%;

@@ -164,6 +164,8 @@ $(window).on("load", function () {
             visible = true;
             $('#casa').removeClass("selected");
             $('#lupa-i').addClass("selected");
+            $('#casa-span').removeClass("selectedText");
+            $('#lupa-span').addClass("selectedText");
             popup.show();
             var popper = new Popper(ref, popup, {
                 placement: 'right',
@@ -171,6 +173,8 @@ $(window).on("load", function () {
         } else {
             $('#lupa-i').removeClass("selected");
             $('#casa').addClass("selected");
+            $('#lupa-span').removeClass("selectedText");
+            $('#casa-span').addClass("selectedText");
             popup.hide();
             visible = false;
         }
