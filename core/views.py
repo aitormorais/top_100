@@ -65,12 +65,14 @@ def artista(request, nombre_artista=None):
                 canciones_de_artista = get_list_or_404(
                     Cancion, artista=artista_seleccionado)
                 queryValida = True
-            except Exception:
+            except Exception as e:
+                print(e)
                 pass
             pass
-        except Exception:
+        except Exception as e:
+            print(e)
             pass
-
+        
     context = {
         "artist": artista,
         "nombre": nameInput,
