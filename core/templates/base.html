@@ -54,7 +54,7 @@
     </div>
     <div class="footer-container">
       <div id="NowPlaying" class="left">
-        <img id="caratula" src="">
+        <img id="caratula" :src="url">
         {% autoescape off %}
         <h3 v-cloak>[[ message ]][[ songString ]]</h3>
         {% endautoescape %}

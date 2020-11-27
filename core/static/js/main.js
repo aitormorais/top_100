@@ -23,8 +23,8 @@ function PlayPause(id) {
             }
         }
         songVue.songString = document.getElementById(id + "NameLabel").textContent;
+        songVue.url = $(document.getElementById("Prueba 2")).attr("url");;
         $("#caratula").show();
-        $("#caratula").prop('src', $("#" + id).attr("url"))
         var mydata = { cancion: songVue.songString };
 
         song = document.getElementById(id + "audioPlayer"); // Store data
@@ -191,7 +191,8 @@ var songVue = new Vue({
     el: '#NowPlaying',
     data: {
         message: 'Now Playing: ',
-        songString: ''
+        songString: '',
+        url: ''
     }
 })
 var searchVue = new Vue({
