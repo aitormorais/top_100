@@ -50,7 +50,7 @@ def genero(request, nombre_genero=None):
 
 def artista(request, nombre_artista=None):
     artista = Artista.objects.all()
-    nombre_artista = None
+    #nombre_artista = None
     artista_seleccionado = None
     queryValida = False
     nameInput = False
@@ -72,13 +72,13 @@ def artista(request, nombre_artista=None):
         except Exception as e:
             print(e)
             pass
-        
+
     context = {
         "artist": artista,
         "nombre": nameInput,
         "query": queryValida,
         "artista": artista_seleccionado,
-        "canciones_artista": canciones_de_artista
+        "canciones": canciones_de_artista
     }
     return render(request, "artista.html", context)
 

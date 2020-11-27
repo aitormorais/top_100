@@ -17,14 +17,6 @@
   <div class="title plb-20">
     <h1><strong>Top 100</strong></h1>
   </div>
-  <div class=" container-flex text-center">
-    {% for e in artist %}
-    <div class="music-card">
-      <a href="/artista/{{e.nombre}}"><img src="{{e.imagen.url}}" alt=""></a>
-      <p><a href="/artista/{{e.nombre}}">{{e.nombre}}</a></p>
-    </div>
-    {% endfor %}
-  </div>
 
   {% if query %}
   <table class="table table-dark">
@@ -35,12 +27,35 @@
     </tr>
     {% for c in canciones %}
     <tr>
-      <td>{{c.artista.nombre}}</td>
-      <td>{{c.nombre}}</td>
+      <td><a id="{{c.nombre}}" url="{{c.caratula.url}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i
+            id="{{c.nombre}}Icon" class="far fa-play-circle"></i></a></td>
+      <!-- Utilizar js para hacer play a la canción seleccionada -->
+      <audio id="{{c.nombre}}audioPlayer" preload="none">
+        <source src="{{c.mp3.url}}" type="audio/mpeg">
+      </audio>
+      <td>{{c.artista.nombre}}></td>
+      <td id="{{c.nombre}}NameLabel">{{c.nombre}}</td>
 
     </tr>
     {% endfor %}
   </table>
+
+  {%elif nombre%}
+  <h1>:( No hay ninguna canción de ese artista</h1>
+
+
+  {%else%}
+  <div class=" container-flex text-center">
+    {% for e in artist %}
+    <div class="music-card">
+      <a href="/artista/{{e.nombre}}"><img src="{{e.imagen.url}}" alt=""></a>
+      <p><a href="/artista/{{e.nombre}}">{{e.nombre}}</a></p>
+    </div>
+    {% endfor %}
+  </div>
+
+
+
 
   {% endif %}
   </div>
