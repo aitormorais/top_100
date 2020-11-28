@@ -196,7 +196,7 @@ footer .footer-container {
 footer .footer-container .left {
   float: left;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   width: 33.3%;
   height: 100%;
 }
