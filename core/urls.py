@@ -12,4 +12,6 @@ urlpatterns = [
     path('artista/<str:nombre_artista>/', views.artista, name='artista'),
     path('api/cancionEscuchada', views.cancionEscuchada, name='cancionEscuchada'),
     path('search/<str:nombre_cancion>/', views.busqueda, name='busqueda'),
+    path('cancion/', views.cancion, name='cancion'),
+    path('cancion/<str:nombre_cancion>/', views.cancion, name='cancion'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

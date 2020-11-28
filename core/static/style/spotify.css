@@ -259,6 +259,29 @@ footer .progress {
 footer .progress-bar {
   background-color: #5fff50;
 }
+/* Cancion */
+
+.image-text-left {
+  float: left;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid #ddd;
+}
+.image-text-left img {
+  max-width: 40%;
+}
+.image-text-right {
+  float: right;
+  width: 55%;
+  justify-content: left;
+}
+.image-text-right div table {
+  margin-top: 30px;
+  float: left;
+  width: 90%;
+}
+
 /* Loader */
 body {
   margin: 0;

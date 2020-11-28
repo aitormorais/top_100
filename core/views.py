@@ -1,6 +1,6 @@
 import json
 from django.db.models import query
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 # Create your views here.
@@ -81,6 +81,29 @@ def artista(request, nombre_artista=None):
         "canciones": canciones_de_artista
     }
     return render(request, "artista.html", context)
+
+
+def cancion(request, nombre_cancion=None):
+    canciones = Cancion.objects.all()
+    queryValida = False
+    cancion_seleccionado = None
+    nombre = False
+    if(nombre_cancion != None):
+        nombre = True
+        try:
+            cancion_seleccionado = get_object_or_404(
+                Cancion, nombre=nombre_cancion)
+            queryValida = True
+        except Exception:
+            pass
+
+    context = {
+        "nombre": nombre,
+        "canciones": canciones,
+        "query": queryValida,
+        "cancion": cancion_seleccionado,
+    }
+    return render(request, "cancion.html", context)
 
 
 def cancionEscuchada(request):

@@ -23,7 +23,7 @@ function PlayPause(id) {
             }
         }
         songVue.songString = document.getElementById(id + "NameLabel").textContent;
-        songVue.url = $(document.getElementById("Prueba 2")).attr("url");;
+        songVue.url = $(document.getElementById(id)).attr("url");;
         $("#caratula").show();
         var mydata = { cancion: songVue.songString };
 

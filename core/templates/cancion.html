@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+{% load static %}
+
+
+<main>
+    <div class="container-flex ptb-30 plb-20">
+        <div class="toplist">
+            <ul class="list-inline">
+                <li><a href="/">Top 100</a></li>
+                <li><a href="/genero">Genero</a></li>
+                <li><a href="/artista">Artistas</a></li>
+                <li><a href="/cancion" id="selected">Cancion</a></li>
+                <li><a href="#">dolor sit</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="title plb-20">
+        <h1><strong>Top 100
+            </strong></h1>
+    </div>
+    {% if query %}
+    <div class="title plb-20">
+        <h2><strong>Detalles de {{cancion.nombre}}
+            </strong></h2>
+    </div>
+    <div class="image-text-left"><img src="{{cancion.caratula.url}}" alt=""></div>
+    <div class="image-text-right">
+        <h3>Estilo: {{cancion.estilo.nombre}}<br>Producido por {{cancion.artista.nombre}}<br></h3>
+        <div>
+            <table class="table table-dark table-bordered">
+                <tr>
+                    <th></th>
+                    <th>Nombre</th>
+                    <th>Estilo</th>
+                    <th>Artista</th>
+                </tr>
+                <tr>
+                    <td scope="row"><a id="{{cancion.nombre}}" url="{{cancion.caratula.url}}"
+                            onclick="PlayPause(this.id)" href="javascript:void(0)"><i id="{{cancion.nombre}}Icon"
+                                class="far fa-play-circle"></i></a>
+                    </td>
+                    <!-- Utilizar js para hacer play a la canción seleccionada -->
+                    <audio id="{{cancion.nombre}}audioPlayer" preload="none">
+                        <source src="{{cancion.mp3.url}}" type="audio/mpeg">
+                    </audio>
+                    <td id="{{cancion.nombre}}NameLabel">{{cancion.nombre}}</td>
+                    <td>{{cancion.estilo.nombre}}</td>
+                    <td>{{cancion.artista.nombre}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    {% elif nombre %}
+    <h1>:( No existe esta cancion</h1>
+    {% else %}
+    <div class=" container-flex text-center">
+        {% for c in canciones %}
+        <div class="music-card">
+            <a href="/cancion/{{c.nombre}}"><img src="{{c.caratula.url}}" alt=""></a>
+            <p><a href="/cancion/{{c.nombre}}">{{c.nombre}}</a></p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    </div>
+</main>
+
+
+
+{% endblock %}
