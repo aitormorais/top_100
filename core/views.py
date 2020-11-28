@@ -8,11 +8,17 @@ from core.models import Cancion, Estilo, Artista
 
 
 def index(request):
-    canciones = Cancion.objects.order_by('-vecesEscuchada')
+
     generos = Estilo.objects.all()
+    artistas = Artista.objects.all()
+    canciones = []
+    for e in generos:
+        canciones.append(Cancion.objects.filter(
+            estilo=e).order_by('-vecesEscuchada')[: 2])
     data = {
         'canciones': canciones,
-        'generos': generos
+        'generos': generos,
+        'artistas': artistas
     }
     return render(request, "index.html", data)
 
@@ -50,7 +56,6 @@ def genero(request, nombre_genero=None):
 
 def artista(request, nombre_artista=None):
     artista = Artista.objects.all()
-    #nombre_artista = None
     artista_seleccionado = None
     queryValida = False
     nameInput = False
@@ -137,7 +142,7 @@ def busqueda(request, nombre_cancion):
     query = False
     canciones = None
     try:
-        #canciones = Cancion.objects.get(nombre__icontains=nombre_cancion).order_by('-vecesEscuchada')
+        # canciones = Cancion.objects.get(nombre__icontains=nombre_cancion).order_by('-vecesEscuchada')
         canciones = get_list_or_404(Cancion, nombre__icontains=nombre_cancion)
         query = True
     except Exception as e:

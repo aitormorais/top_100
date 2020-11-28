@@ -16,6 +16,7 @@
   </div>
   <div class="title plb-20">
     <h1><strong>Top 100 de canciones</strong></h1>
+    <h3>Dos por genero y ordenadas por veces escuchadas</h3>
   </div>
   </div>
   <div class=" container-flex">
@@ -27,17 +28,19 @@
         <th>Artista</th>
       </tr>
       {% for c in canciones %}
+      {% for cc in c %}
       <tr>
-        <td><a id="{{c.nombre}}" url="{{c.caratula.url}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i
-              id="{{c.nombre}}Icon" class="far fa-play-circle"></i></a></td>
+        <td><a id="{{cc.nombre}}" url="{{cc.caratula.url}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i
+              id="{{cc.nombre}}Icon" class="far fa-play-circle"></i></a></td>
         <!-- Utilizar js para hacer play a la canción seleccionada -->
-        <audio id="{{c.nombre}}audioPlayer" preload="none">
-          <source src="{{c.mp3.url}}" type="audio/mpeg">
+        <audio id="{{cc.nombre}}audioPlayer" preload="none">
+          <source src="{{cc.mp3.url}}" type="audio/mpeg">
         </audio>
-        <td id="{{c.nombre}}NameLabel">{{c.nombre}}</td>
-        <td>{{c.estilo.nombre}}</td>
-        <td>{{c.artista.nombre}}</td>
+        <td id="{{cc.nombre}}NameLabel">{{cc.nombre}}</td>
+        <td>{{cc.estilo.nombre}}</td>
+        <td>{{cc.artista.nombre}}</td>
       </tr>
+      {% endfor %}
       {% endfor %}
     </table>
   </div>
@@ -52,6 +55,21 @@
       <a href="/genero/{{g.nombre}}"><img src="{{g.caratula.url}}" alt=""></a>
       <a href="/genero/{{g.nombre}}">
         <p>{{g.nombre}}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="container-flex">
+    <div class="title plb-20">
+      <h1><strong>Artistas</strong></h1>
+    </div>
+  </div>
+  <div class="container-flex text-center">
+    {% for a in artistas %}
+    <div class="music-card">
+      <a href="/genero/{{a.nombre}}"><img src="{{a.imagen.url}}" alt=""></a>
+      <a href="/genero/{{a.nombre}}">
+        <p>{{a.nombre}}</p>
       </a>
     </div>
     {% endfor %}
