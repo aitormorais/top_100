@@ -164,7 +164,6 @@ def welcome(request):
     return redirect('/login')
 
 
-
 def register(request):
     form = UserCreationForm()
     if request.method == 'POST':
