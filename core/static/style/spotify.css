@@ -132,7 +132,7 @@ main {
   color: grey;
   letter-spacing: 2px;
 }
-.toplist ul li #selected {
+.toplist ul li .selected {
   color: white;
 }
 .toplist {

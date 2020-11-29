@@ -156,6 +156,19 @@ setInterval(updateProgressValue, 100); // Update the progress of the bar
 $(window).on("load", function () {
     $(".loader-wrapper").fadeOut("slow");
     $("#caratula").hide();
+    if (window.location.pathname.startsWith('/genero')) {
+        $('#genero').addClass("selected");
+    } else if (window.location.pathname.startsWith('/artista')) {
+        $('#artista').addClass("selected");
+    } else if (window.location.pathname.startsWith('/cancion')) {
+        $('#canciones').addClass("selected");
+    } else if (window.location.pathname.startsWith('/login')) {
+        $('#login').addClass("selected");
+    } else if (window.location.pathname.startsWith('/search')) {
+        //No remarcar ninguno
+    } else {
+        $('#home').addClass("selected");
+    }
     ref = $('#lupa');
     popup = $('#popup');
     popup.hide();
