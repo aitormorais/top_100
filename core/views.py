@@ -1,14 +1,17 @@
 import json
 from django.db.models import query
 from django.http.response import HttpResponse
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
+from django.contrib.auth import login as do_login
+from django.contrib.auth import logout as do_logout
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 # Create your views here.
 from core.models import Cancion, Estilo, Artista
 
 
 def index(request):
-
     generos = Estilo.objects.all()
     artistas = Artista.objects.all()
     canciones = []
@@ -29,7 +32,7 @@ def genero(request, nombre_genero=None):
     nameInput = False
     genero_seleccionado = None
     canciones_con_genero = None
-    if(nombre_genero != None):
+    if (nombre_genero != None):
         nameInput = True
         try:
             genero_seleccionado = get_object_or_404(
@@ -61,7 +64,7 @@ def artista(request, nombre_artista=None):
     nameInput = False
     canciones_de_artista = None
 
-    if(nombre_artista != None):
+    if (nombre_artista != None):
         nameInput = True
         try:
             artista_seleccionado = get_object_or_404(
@@ -93,7 +96,7 @@ def cancion(request, nombre_cancion=None):
     queryValida = False
     cancion_seleccionado = None
     nombre = False
-    if(nombre_cancion != None):
+    if (nombre_cancion != None):
         nombre = True
         try:
             cancion_seleccionado = get_object_or_404(
@@ -153,3 +156,46 @@ def busqueda(request, nombre_cancion):
         'canciones': canciones
     }
     return render(request, "search.html", data)
+
+
+def welcome(request):
+    if request.user.is_authenticated:
+        return render(request, "welcome.html")
+    return redirect('/login')
+
+
+
+def register(request):
+    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            if user is not None:
+                do_login(request, user)
+                return redirect('login/')
+
+    return render(request, "register.html", {'form': form})
+
+
+def login(request):
+    form = AuthenticationForm()
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                do_login(request, user)
+
+                return redirect('user/')
+
+    return render(request, "login.html", {'form': form})
+
+
+def logout(request):
+    do_logout(request)
+    return redirect('/')

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+{% load static %}
+
+<main>
+    <div class="container-flex ptb-30 plb-20">
+        <div class="toplist">
+            <ul class="list-inline">
+                <li><a href="/">Top 100</a></li>
+                <li><a href="/genero">Genero</a></li>
+                <li><a href="/artista">Artistas</a></li>
+                <li><a href="/cancion">Cancion</a></li>
+                 <li><a href="user/" id="selected">Area de usuario</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="title plb-20">
+        <h1><strong>Login
+            </strong></h1>
+    </div>
+    <form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Login</button>
+</form>
+
+<hr />
+<a href="/register">Registrar usuario</a>
+
+ {% endblock %}
