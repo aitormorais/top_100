@@ -14,4 +14,9 @@ urlpatterns = [
     path('search/<str:nombre_cancion>/', views.busqueda, name='busqueda'),
     path('cancion/', views.cancion, name='cancion'),
     path('cancion/<str:nombre_cancion>/', views.cancion, name='cancion'),
+    path('login/user/', views.welcome),
+    path('welcome/', views.register),
+    path('login/', views.login),
+    path('register/', views.register),
+    path('logout/', views.logout),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
