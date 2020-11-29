@@ -10,15 +10,20 @@
         <h1><strong>Top 100
             </strong></h1>
     </div>
+    <div class="plb-20 pr-20 mx-30">
+        <h2>Área para miembros</h2>
 
-<h2>Área para miembros</h2>
+        <p>
+            Bienvenido <b>{{request.user.username}}</b>,
+            esta página es exclusiva para usuarios registrados.
+        </p>
 
-<p>
-    Bienvenido <b>{{request.user.username}}</b>,
-    esta página es exclusiva para usuarios registrados.
-</p>
+        <hr />
+        <form action="{% url 'logout' %}">
+            <button class="btn btn-danger" type=" submit">Cerrar sesión</button>
+        </form>
+    </div>
 
-<hr />
-<a href="{% url 'logout' %}">Cerrar sesión</a>
+
 </main>
 {% endblock %}

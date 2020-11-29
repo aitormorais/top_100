@@ -54,6 +54,9 @@ a:hover {
 .ft-15 {
   font-size: 15px;
 }
+.pr-20 {
+  padding-right: 20px;
+}
 
 /* SIDENAV */
 
@@ -165,6 +168,15 @@ main {
   font-size: 12px;
   font-weight: bold;
   padding-top: 10px;
+}
+.mx-30 form button {
+  max-width: 30%;
+}
+.mx-30 form p {
+  max-width: 30%;
+}
+.mx-30 form p input {
+  width: 100%;
 }
 
 /* FOOTER */
