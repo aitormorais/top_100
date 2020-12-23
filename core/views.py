@@ -6,6 +6,7 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth import logout as do_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.utils.translation import gettext as _
 
 # Create your views here.
 from core.models import Cancion, Estilo, Artista
@@ -23,6 +24,7 @@ def index(request):
         'generos': generos,
         'artistas': artistas
     }
+
     return render(request, "index.html", data)
 
 
