@@ -8,8 +8,6 @@
   <div class="title plb-20">
     {% get_current_language as LANGUAGE_CODE %}
     <h1><strong>Top 100 de canciones</strong></h1>
-    <h2>{{LANGUAGE_CODE}}</h2>
-    <h2>{{title}}</h2>
     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
     <input type="hidden" name="next" value="{{redirect_to}}">
       <select name = "language" id="">
@@ -23,7 +21,6 @@
       </select>
       <input type="submit" value="Go">
     </form>
-    <h3>Dos por genero y ordenadas por veces escuchadas</h3>
   </div>
   </div>
   <div class=" container-flex">

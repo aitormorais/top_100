@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-26 13:49+0100\n"
+"POT-Creation-Date: 2020-12-26 14:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\core\templates\artista.html:9 .\core\templates\base.html:12
-#: .\core\templates\index.html:71
+#: .\core\templates\index.html:68
 msgid "Artistas"
 msgstr "Abeslariak"
 
-#: .\core\templates\artista.html:20 .\core\templates\index.html:35
+#: .\core\templates\artista.html:13 .\core\templates\cancion.html:14
+#: .\core\templates\genero.html:14
+msgid "Detalles de"
+msgstr "ikusi datuak"
+
+#: .\core\templates\artista.html:20 .\core\templates\cancion.html:26
+#: .\core\templates\genero.html:23 .\core\templates\index.html:32
 #, fuzzy
 #| msgid "Artistas"
 msgid "Artista"
@@ -35,7 +41,8 @@ msgstr "Abeslariak"
 msgid "Cancion"
 msgstr "Abestiak"
 
-#: .\core\templates\base.html:11 .\core\templates\index.html:56
+#: .\core\templates\base.html:11 .\core\templates\genero.html:10
+#: .\core\templates\index.html:53
 msgid "Generos"
 msgstr "Abesti motak"
 
@@ -47,17 +54,19 @@ msgstr "Abestiak"
 msgid "Area de usuario"
 msgstr "Erabiltzaile gunea"
 
-#: .\core\templates\cancion.html:14
-msgid "Detalles de"
-msgstr "ikusi datuak"
-
-#: .\core\templates\index.html:33
-msgid "Nombre"
-msgstr "Izena"
-
-#: .\core\templates\index.html:34
+#: .\core\templates\cancion.html:19 .\core\templates\cancion.html:25
+#: .\core\templates\genero.html:22 .\core\templates\index.html:31
 msgid "Estilo"
 msgstr "Estiloa"
+
+#: .\core\templates\cancion.html:19
+msgid "Producido por "
+msgstr "Artista honengaitik egina : "
+
+#: .\core\templates\cancion.html:24 .\core\templates\genero.html:21
+#: .\core\templates\index.html:30
+msgid "Nombre"
+msgstr "Izena"
 
 #: .\core\templates\welcome.html:13
 msgid "Área para miembros"
@@ -75,6 +84,19 @@ msgstr ""
 "\n"
 "erregistratutako erabiltzaileek bakarrik ikus dezakete orri hau"
 
-#: .\core\views.py:19
-msgid "Pagina Principal"
-msgstr "Hasiera orria"
+#: .\top_100\urls.py:28
+msgid "admin/"
+msgstr ""
+
+#~ msgid "Registrar"
+#~ msgstr "Erregistratu"
+
+#~ msgid "Iniciar sesión"
+#~ msgstr "Saio hasi"
+
+#~ msgid "Pagina Principal"
+#~ msgstr "Hasiera orria"
+
+#, python-format
+#~ msgid "Producido por %(cancion.artista.nombre)s "
+#~ msgstr " (cancion.artista.nombre) egin du "

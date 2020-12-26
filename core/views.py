@@ -16,28 +16,14 @@ def index(request):
     generos = Estilo.objects.all()
     artistas = Artista.objects.all()
     canciones = []
-    title = _('Pagina Principal')
     for e in generos:
         canciones.append(Cancion.objects.filter(
             estilo=e).order_by('-vecesEscuchada')[: 2])
     data = {
         'canciones': canciones,
         'generos': generos,
-        'artistas': artistas,
-        'title':title
+        'artistas': artistas
     }
-
-
-    '''
-    from django.utils import translation
-    user_language = 'eu'
-    translation.activate(user_language)
-    #lo hacemos persistente con el siguiente codigo
-    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
-    if translation.LANGUAGE_SESSION_KEY in request.session:
-        del request.session[translation.LANGUAGE_SESSION_KEY]'''
-
-
     return render(request, "index.html", data)
 
 

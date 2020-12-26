@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block contenido %}
 {% load static %}
 
@@ -7,20 +7,20 @@
 <main>
 
   <div class="title plb-20">
-    <h1><strong>Generos</strong></h1>
+    <h1><strong>{% trans "Generos" %}</strong></h1>
   </div>
   {% if query %}
   <div class="title plb-20">
-    <h2><strong>Detalles de {{genero.nombre}}
+    <h2><strong>{% trans "Detalles de" %} {{genero.nombre}}
       </strong></h2>
     <h3>{{genero.detalles}}</h3>
   </div>
   <table class="table table-dark">
     <tr>
       <th></th>
-      <th>Nombre</th>
-      <th>Estilo</th>
-      <th>Artista</th>
+      <th>{% trans "Nombre" %}</th>
+      <th>{% trans "Estilo" %}</th>
+      <th>{% trans "Artista" %}</th>
     </tr>
     {% for c in canciones %}
     <tr>

@@ -16,14 +16,14 @@
     </div>
     <div class="image-text-left"><img src="{{cancion.caratula.url}}" alt=""></div>
     <div class="image-text-right">
-        <h3>Estilo: {{cancion.estilo.nombre}}<br>Producido por {{cancion.artista.nombre}}<br></h3>
+        <h3>{% trans "Estilo" %}: {{cancion.estilo.nombre}}<br>{% blocktrans %}Producido por {% endblocktrans %}{{cancion.artista.nombre}} <br></h3>
         <div>
             <table class="table table-dark table-bordered">
                 <tr>
                     <th></th>
-                    <th>Nombre</th>
-                    <th>Estilo</th>
-                    <th>Artista</th>
+                    <th>{% trans "Nombre" %}</th>
+                    <th>{% trans "Estilo" %}</th>
+                    <th>{% trans "Artista" %}</th>
                 </tr>
                 <tr>
                     <td scope="row"><a id="{{cancion.nombre}}" url="{{cancion.caratula.url}}"
