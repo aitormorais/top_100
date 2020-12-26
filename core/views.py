@@ -199,3 +199,37 @@ def login(request):
 def logout(request):
     do_logout(request)
     return redirect('/')
+
+
+def caratula(request):
+    if request.method == "POST":
+        try:
+            body_unicode = request.body.decode('utf-8')
+            body = json.loads(body_unicode)
+            content = body['pk']
+            cancion = get_object_or_404(Cancion, pk=content)
+            data = {
+                'status': 200,
+                'data': 'OK',
+                'caratula': cancion.caratula.url
+            }
+            print("Caratula de la cancion: " + cancion.caratula.url)
+            dump = json.dumps(data)
+            return HttpResponse(dump, content_type='application/json')
+        except Exception as e:
+            data = {
+                'status': 500,
+                'data': e.__str__
+            }
+            dump = json.dumps(data)
+            return HttpResponse(dump, content_type='application/json')
+
+    return HttpResponse(":(")
+
+
+def popUp(request, pk):
+    cancion = get_object_or_404(Cancion, pk=pk)
+    data = {
+        'c': cancion
+    }
+    return render(request, "imgPopUp.html", data)

@@ -30,6 +30,18 @@ a:hover {
   padding-left: 20px;
   background-color: rgb(40 40 40 / 95%);
 }
+.PopUpImg {
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: rgb(40 40 40 / 95%);
+}
+.PopUpImg img {
+  max-width: 150px;
+  border-radius: 5px;
+}
 .PopUp .form-control {
   width: 69%;
   float: left;

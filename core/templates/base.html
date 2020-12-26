@@ -54,6 +54,7 @@
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
   </div>
+  <div id="popperUp"></div>
   {% block contenido %}{% endblock %}
   <footer>
     <div class="progress" style="height: 3px;">
@@ -62,7 +63,7 @@
     </div>
     <div class="footer-container">
       <div id="NowPlaying" class="left">
-        <img id="caratula" :src="url">
+        <img v-cloak id="caratula" :src="url">
         {% autoescape off %}
         <h3 v-cloak>[[ message ]][[ songString ]]</h3>
         {% endautoescape %}
@@ -79,6 +80,7 @@
       </div>
       <div class="right"></div>
     </div>
+    
 
   </footer>
 

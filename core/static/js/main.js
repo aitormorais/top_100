@@ -23,7 +23,7 @@ function PlayPause(id) {
             }
         }
         songVue.songString = document.getElementById(id + "NameLabel").textContent;
-        songVue.url = $(document.getElementById(id)).attr("url");;
+        getImgUrl(id);
         $("#caratula").show();
         var mydata = { cancion: songVue.songString };
 
@@ -37,23 +37,16 @@ function PlayPause(id) {
                 if (firstTime) {
                     $.ajax({
                         type: "POST",
-                        url: "/api/cancionEscuchada",
+                        url: "api/cancionEscuchada",
                         headers: { 'X-CSRFToken': token },
                         data: JSON.stringify(mydata),
                         contentType: 'application/json; charset=utf-8',
-                        dataType: "json"
+                        dataType: "json",
+                        success: function (response) {
+                            console.log(response);
+                            let jsonData = response;
+                        }
                     })
-                        .done(function (data, textStatus, jqXHR) {
-                            if (console && console.log) {
-                                console.log("La solicitud se ha completado correctamente.");
-                                console.log(data);
-                            }
-                        })
-                        .fail(function (jqXHR, textStatus, errorThrown) {
-                            if (console && console.log) {
-                                console.log("La solicitud a fallado: " + textStatus);
-                            }
-                        });
                 }
                 firstTime = false
                 song.play();
@@ -156,15 +149,15 @@ setInterval(updateProgressValue, 100); // Update the progress of the bar
 $(window).on("load", function () {
     $(".loader-wrapper").fadeOut("slow");
     $("#caratula").hide();
-    if (window.location.pathname.startsWith('/genero')) {
+    if (window.location.pathname.includes('/genero')) {
         $('#genero').addClass("selected");
-    } else if (window.location.pathname.startsWith('/artista')) {
+    } else if (window.location.pathname.includes('/artista')) {
         $('#artista').addClass("selected");
-    } else if (window.location.pathname.startsWith('/cancion')) {
+    } else if (window.location.pathname.includes('/cancion')) {
         $('#canciones').addClass("selected");
-    } else if (window.location.pathname.startsWith('/login')) {
+    } else if (window.location.pathname.includes('/login')) {
         $('#login').addClass("selected");
-    } else if (window.location.pathname.startsWith('/search')) {
+    } else if (window.location.pathname.includes('/search')) {
         //No remarcar ninguno
     } else {
         $('#home').addClass("selected");
@@ -199,6 +192,58 @@ $(window).on("load", function () {
         console.log("Aqui no hay canciones");
     }
 });
+async function getImgUrl(id) {
+    let mydata = {pk: id};
+    $.ajax({
+        type: "POST",
+        url: "api/caratula",
+        headers: { 'X-CSRFToken': token },
+        data: JSON.stringify(mydata),
+        contentType: 'application/json; charset=utf-8',
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            let jsonData = response; // Response is a raw json. JSON.parse wouldn't read it. so I have to convert it to a String.
+            if (jsonData.status == 200) { // If it is correct just change the img.
+                console.log(jsonData.data)
+                console.log(jsonData.caratula)
+                songVue.url = jsonData.caratula
+            }
+            else {
+                console.log("Error");
+                console.log(jsonData)
+            }
+        }
+    });    
+}
+function showPopUp(id){
+    if($("#popup"+id).length == 0) {// Download the img data from the server if the popper pop Up does not exist.
+        ajaxDownloadPopUp(id).done(function(){
+            var popper = new Popper($("#"+id), $("#popperUp"), {
+                placement: 'right',
+            });
+            $("#popperUp").show();
+        })
+        //It doesn't exist
+    }
+    else{
+        $("#popperUp").show();
+    }
+}
+function ajaxDownloadPopUp(id){
+    return $.ajax({
+        type: "GET",
+        url: `api/ImgPopUp/${id}`,
+        success: function (response) {
+            $("#popperUp").html(response);
+            
+            
+        }
+    });
+}
+function hidePopUp(id){
+    $("#popperUp").hide()
+}
 var songVue = new Vue({
     delimiters: ['[[', ']]'],
     el: '#NowPlaying',

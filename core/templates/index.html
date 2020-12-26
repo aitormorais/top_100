@@ -34,13 +34,13 @@
       {% for c in canciones %}
       {% for cc in c %}
       <tr>
-        <td><a id="{{cc.nombre}}" url="{{cc.caratula.url}}" onclick="PlayPause(this.id)" href="javascript:void(0)"><i
-              id="{{cc.nombre}}Icon" class="far fa-play-circle"></i></a></td>
+        <td><a id="{{cc.pk}}" onclick="PlayPause(this.id)" onmouseover="showPopUp(this.id)" onmouseout="hidePopUp(this.id)" on href="javascript:void(0)"><i
+              id="{{cc.pk}}Icon" class="far fa-play-circle"></i></a></td>
         <!-- Utilizar js para hacer play a la canción seleccionada -->
-        <audio id="{{cc.nombre}}audioPlayer" preload="none">
+        <audio id="{{cc.pk}}audioPlayer" preload="none">
           <source src="{{cc.mp3.url}}" type="audio/mpeg">
         </audio>
-        <td id="{{cc.nombre}}NameLabel">{{cc.nombre}}</td>
+        <td id="{{cc.pk}}NameLabel">{{cc.nombre}}</td>
         <td>{{cc.estilo.nombre}}</td>
         <td>{{cc.artista.nombre}}</td>
       </tr>
