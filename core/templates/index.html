@@ -2,10 +2,27 @@
 
 {% block contenido %}
 {% load static %}
+{% load i18n %}
 <main>
 
   <div class="title plb-20">
+    {% get_current_language as LANGUAGE_CODE %}
     <h1><strong>Top 100 de canciones</strong></h1>
+    <h2>{{LANGUAGE_CODE}}</h2>
+    <h2>{{title}}</h2>
+    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    <input type="hidden" name="next" value="{{redirect_to}}">
+      <select name = "language" id="">
+        {% get_available_languages as LANGUAGES%}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+          <option value="{{language.code}}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+            {{language.name_local }}({{ language.code}})
+          </option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Go">
+    </form>
     <h3>Dos por genero y ordenadas por veces escuchadas</h3>
   </div>
   </div>
@@ -13,9 +30,9 @@
     <table class="table table-dark">
       <tr>
         <th></th>
-        <th>Nombre</th>
-        <th>Estilo</th>
-        <th>Artista</th>
+        <th>{% trans "Nombre" %}</th>
+        <th>{% trans "Estilo" %}</th>
+        <th>{% trans "Artista"%}</th>
       </tr>
       {% for c in canciones %}
       {% for cc in c %}
@@ -36,7 +53,7 @@
   </div>
   <div class="container-flex">
     <div class="title plb-20">
-      <h1><strong>Generos</strong></h1>
+      <h1><strong>{% trans "Generos" %}</strong></h1>
     </div>
   </div>
   <div class="container-flex text-center">
@@ -51,7 +68,7 @@
   </div>
   <div class="container-flex">
     <div class="title plb-20">
-      <h1><strong>Artistas</strong></h1>
+      <h1><strong>{% trans "Artistas" %}</strong></h1>
     </div>
   </div>
   <div class="container-flex text-center">

@@ -1,17 +1,17 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block contenido %}
 {% load static %}
 
 
 <main>
     <div class="title plb-20">
-        <h1><strong>Canciones
+        <h1><strong>{% trans "Canciones" %}
             </strong></h1>
     </div>
     {% if query %}
     <div class="title plb-20">
-        <h2><strong>Detalles de {{cancion.nombre}}
+        <h2><strong>{% trans "Detalles de" %} {{cancion.nombre}}
             </strong></h2>
     </div>
     <div class="image-text-left"><img src="{{cancion.caratula.url}}" alt=""></div>
