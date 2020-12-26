@@ -1,21 +1,20 @@
 {% extends "base.html" %}
-
 {% block contenido %}
 {% load static %}
+{% load i18n %}
 
 
 <main>
-
     <div class="title plb-20">
         <h1><strong>Top 100
             </strong></h1>
     </div>
     <div class="plb-20 pr-20 mx-30">
-        <h2>Área para miembros</h2>
+        <h2>{% trans "Área para miembros" %}</h2>
 
         <p>
-            Bienvenido <b>{{request.user.username}}</b>,
-            esta página es exclusiva para usuarios registrados.
+            {% blocktrans %}Bienvenido{% endblocktrans %} <b>{{request.user.username}}</b>,{% blocktrans %}
+            esta página es exclusiva para usuarios registrados.{% endblocktrans %}
         </p>
 
         <hr />

@@ -6,6 +6,7 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth import logout as do_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.utils.translation import gettext as _
 
 # Create your views here.
 from core.models import Cancion, Estilo, Artista
@@ -15,14 +16,28 @@ def index(request):
     generos = Estilo.objects.all()
     artistas = Artista.objects.all()
     canciones = []
+    title = _('Pagina Principal')
     for e in generos:
         canciones.append(Cancion.objects.filter(
             estilo=e).order_by('-vecesEscuchada')[: 2])
     data = {
         'canciones': canciones,
         'generos': generos,
-        'artistas': artistas
+        'artistas': artistas,
+        'title':title
     }
+
+
+    '''
+    from django.utils import translation
+    user_language = 'eu'
+    translation.activate(user_language)
+    #lo hacemos persistente con el siguiente codigo
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]'''
+
+
     return render(request, "index.html", data)
 
 
