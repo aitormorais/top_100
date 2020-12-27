@@ -7,20 +7,22 @@
 
 
   <h1><strong>Top 100 de canciones</strong></h1>
-      {% get_available_languages as LANGUAGES %}
-      {% get_language_info_list for LANGUAGES as languages %}
-     
-      <div class="fixed-action-btn">
-        <form action="{% url 'set_language' %}" method="post" id="myform">
-          {% csrf_token %}
-          {% for language in languages %}
-                <button class="btn_transparent" type="submit" value="{{language.code}}" name="language">
-                 <img width="50" {% if language.code == "es" %} src="{% static '/img/spain.jpg' %}" {% else %} src="{% static '/img/ikurrina.jpg' %}" {% endif %}> 
-                </button>
-              {% endfor %}
-            </ul>
-        </form>
-      </div>
+  {% get_available_languages as LANGUAGES %}
+  {% get_language_info_list for LANGUAGES as languages %}
+
+  <div class="fixed-action-btn">
+    <form action="{% url 'set_language' %}" method="post" id="myform">
+      {% csrf_token %}
+      {% for language in languages %}
+      <button class="btn btn-primary" style="width: 25%;" type="submit" value="{{language.code}}" name="language">
+        <img width="20" {% if language.code == 'es' %} src="{% static '/img/spain.jpg' %}" {% else %}
+          src="{% static '/img/ikurrina.jpg' %}" {% endif %}>
+        {{language.name}}
+      </button>
+      {% endfor %}
+      </ul>
+    </form>
+  </div>
 
 
   <div class=" container-flex">
@@ -34,8 +36,9 @@
       {% for c in canciones %}
       {% for cc in c %}
       <tr>
-        <td><a id="{{cc.pk}}" onclick="PlayPause(this.id)" onmouseover="showPopUp(this.id)" onmouseout="hidePopUp(this.id)" on href="javascript:void(0)"><i
-              id="{{cc.pk}}Icon" class="far fa-play-circle"></i></a></td>
+        <td><a id="{{cc.pk}}" onclick="PlayPause(this.id)" onmouseover="showPopUp(this.id)"
+            onmouseout="hidePopUp(this.id)" on href="javascript:void(0)"><i id="{{cc.pk}}Icon"
+              class="far fa-play-circle"></i></a></td>
         <!-- Utilizar js para hacer play a la canción seleccionada -->
         <audio id="{{cc.pk}}audioPlayer" preload="none">
           <source src="{{cc.mp3.url}}" type="audio/mpeg">

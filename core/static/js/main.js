@@ -12,6 +12,7 @@ var firstTime = true;
 var ref = null;
 var popup = null;
 var visible = null;
+var slider = null;
 
 function PlayPause(id) {
     if (song == null || idPlayer == id) { // If song is null is a new song. If the id is the same just pause
@@ -50,7 +51,7 @@ function PlayPause(id) {
                 }
                 firstTime = false
                 song.play();
-                song.volume = 0.2;
+                song.volume = 0.5;
             } else if (iconList.className == "far fa-pause-circle") {
                 iconList.className = "far fa-play-circle";
                 iconGeneric.className = "far fa-play-circle";
@@ -162,6 +163,17 @@ $(window).on("load", function () {
     } else {
         $('#home').addClass("selected");
     }
+    // Buscar el slider
+    slider = document.querySelector("#volume-control");
+    slider.addEventListener("change", function (e) {
+        try {
+            song.volume = e.currentTarget.value / 100;
+        } catch (error) {
+            //La cancion es null, por lo que no se ha seleccionado ninguna cancion   
+        }
+        songVue.volume = " Volume: " + e.currentTarget.value;
+    });
+    // PopUp de la lupa
     ref = $('#lupa');
     popup = $('#popup');
     popup.hide();
@@ -247,13 +259,26 @@ function ajaxDownloadPopUp(id) {
 function hidePopUp(id) {
     $("#popperUp").hide()
 }
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2") + "e-2");
+}
 var songVue = new Vue({
     delimiters: ['[[', ']]'],
     el: '#NowPlaying',
     data: {
         message: 'Now Playing: ',
         songString: '',
-        url: ''
+        url: '',
+        volume: ' Volume: 50'
+    },
+    methods: {
+        redirect: function () {
+            if (window.location.pathname.includes('es')) {
+                window.location.replace("/es/cancion/" + this.songString);
+            } else if (window.location.pathname.includes('eu')) {
+                window.location.replace("/eu/cancion/" + this.songString);
+            }
+        }
     }
 })
 var searchVue = new Vue({
