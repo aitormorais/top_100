@@ -26,15 +26,15 @@
                     <th>{% trans "Artista" %}</th>
                 </tr>
                 <tr>
-                    <td scope="row"><a id="{{cancion.nombre}}" url="{{cancion.caratula.url}}"
-                            onclick="PlayPause(this.id)" href="javascript:void(0)"><i id="{{cancion.nombre}}Icon"
+                    <td scope="row"><a id="{{cancion.pk}}" onmouseover="showPopUp(this.id)" onmouseout="hidePopUp(this.id)"
+                            onclick="PlayPause(this.id)" href="javascript:void(0)"><i id="{{cancion.pk}}Icon"
                                 class="far fa-play-circle"></i></a>
                     </td>
                     <!-- Utilizar js para hacer play a la canción seleccionada -->
-                    <audio id="{{cancion.nombre}}audioPlayer" preload="none">
+                    <audio id="{{cancion.pk}}audioPlayer" preload="none">
                         <source src="{{cancion.mp3.url}}" type="audio/mpeg">
                     </audio>
-                    <td id="{{cancion.nombre}}NameLabel">{{cancion.nombre}}</td>
+                    <td id="{{cancion.pk}}NameLabel">{{cancion.nombre}}</td>
                     <td>{{cancion.estilo.nombre}}</td>
                     <td>{{cancion.artista.nombre}}</td>
                 </tr>

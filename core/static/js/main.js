@@ -37,7 +37,7 @@ function PlayPause(id) {
                 if (firstTime) {
                     $.ajax({
                         type: "POST",
-                        url: "api/cancionEscuchada",
+                        url: "/es/api/cancionEscuchada",
                         headers: { 'X-CSRFToken': token },
                         data: JSON.stringify(mydata),
                         contentType: 'application/json; charset=utf-8',
@@ -193,10 +193,10 @@ $(window).on("load", function () {
     }
 });
 async function getImgUrl(id) {
-    let mydata = {pk: id};
+    let mydata = { pk: id };
     $.ajax({
         type: "POST",
-        url: "api/caratula",
+        url: "/es/api/caratula",
         headers: { 'X-CSRFToken': token },
         data: JSON.stringify(mydata),
         contentType: 'application/json; charset=utf-8',
@@ -214,34 +214,37 @@ async function getImgUrl(id) {
                 console.log(jsonData)
             }
         }
-    });    
+    });
 }
-function showPopUp(id){
-    if($("#popup"+id).length == 0) {// Download the img data from the server if the popper pop Up does not exist.
-        ajaxDownloadPopUp(id).done(function(){
-            var popper = new Popper($("#"+id), $("#popperUp"), {
+function showPopUp(id) {
+    if ($("#popup" + id).length == 0) {// Download the img data from the server if the popper pop Up does not exist.
+        ajaxDownloadPopUp(id).done(function () {
+            new Popper($("#" + id), $("#popperUp"), {
                 placement: 'right',
             });
             $("#popperUp").show();
         })
         //It doesn't exist
     }
-    else{
+    else {
+        new Popper($("#" + id), $("#popperUp"), {
+            placement: 'right',
+        });
         $("#popperUp").show();
     }
 }
-function ajaxDownloadPopUp(id){
+function ajaxDownloadPopUp(id) {
     return $.ajax({
         type: "GET",
-        url: `api/ImgPopUp/${id}`,
+        url: `/es/api/ImgPopUp/${id}`,
         success: function (response) {
             $("#popperUp").html(response);
-            
-            
+
+
         }
     });
 }
-function hidePopUp(id){
+function hidePopUp(id) {
     $("#popperUp").hide()
 }
 var songVue = new Vue({
